@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ProcViewController : UITableViewController
-
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
