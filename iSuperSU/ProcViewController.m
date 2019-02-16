@@ -84,6 +84,16 @@ NSArray *allProcesses() {
     self.procTable.dataSource = self;
     if (!procs) procs = [NSMutableArray array];
     [self updateTableView];
+    //Refresh Controller
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(refresh) forControlEvents:UIControlEventValueChanged];
+    [self.procTable addSubview:self.refreshControl];
+}
+
+- (void)refresh {
+    [procs removeAllObjects];
+    [self updateTableView];
+    [self.refreshControl endRefreshing];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
